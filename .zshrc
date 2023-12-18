@@ -22,6 +22,7 @@ TIMEFMT=$'\n'\
 'system   %S'$'\n'\
 'cpu      %P'$'\n'\
 'total    %*E'$'\n'\
+$'\n'\
 'avg shared (code):          %X KB'$'\n'\
 'avg unshared (data/stack):  %D KB'$'\n'\
 'total (sum):                %K KB'$'\n'\
