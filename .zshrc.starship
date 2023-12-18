@@ -103,19 +103,6 @@ ccd() {
   cd "$cpath"
 }
 
-# Update bashrc by pulling most recent Gist file
-# Fallback to bashrc as the default
-update_rc() {
-  local rc_file
-  if [ "$ZSH_VERSION" ]; then
-    rc_file="$HOME/.zshrc"
-  else
-    rc_file="$HOME/.bashrc"
-  fi
-  curl -o "$rc_file" https://gist.githubusercontent.com/0xZDH/0402f8659f9cb0ca60bd2d97f1a63657/raw
-  source "$rc_file"
-}
-
 # Install starship prompt
 if ! command -v starship > /dev/null 2>&1; then
   if which wget > /dev/null; then

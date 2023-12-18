@@ -1,0 +1,177 @@
+# Some functions and aliases pulled from:
+#   https://github.com/tomnomnom/dotfiles/blob/master/.bashrc
+#   https://github.com/denysdovhan/dotfiles/blob/master/lib/aliases.zsh
+
+# .bashrc
+#   curl -o ~/.bashrc https://gist.githubusercontent.com/0xZDH/0402f8659f9cb0ca60bd2d97f1a63657/raw
+
+# .vimrc:
+#   curl -o ~/.vimrc https://gist.githubusercontent.com/0xZDH/6cd52c5b440edd6a4155719eebfb4f6e/raw
+
+# .tmux.config
+#   curl -o ~/.tmux.config https://gist.githubusercontent.com/0xZDH/99910007398aa18aa4e0a91b6be238c2/raw
+
+# Terminal color examples:
+#   Background Color: #002B35 // rgb(0, 43, 53)
+#   Text Color:       #ACACAC // rgb(172, 172, 172)
+
+# History Control
+HISTCONTROL=ignoredups:ignorespace
+HISTSIZE=100000
+HISTFILESIZE=2000000
+
+# Only enable in bash terminals
+[ "$BASH_VERSION" ] && shopt -s histappend
+
+# Add Golang to PATH
+# export PATH=$PATH:/usr/local/go/bin:~/go/bin
+export EDITOR="vim"
+
+# configure `time` format for debugging
+if [[ `uname` == Darwin ]]; then
+	MAX_MEMORY_UNITS=KB
+else
+	MAX_MEMORY_UNITS=MB
+fi
+
+TIMEFMT=$'\n'\
+'user     %U'$'\n'\
+'system   %S'$'\n'\
+'cpu      %P'$'\n'\
+'total    %*E'$'\n'\
+$'\n'\
+'avg shared (code):          %X KB'$'\n'\
+'avg unshared (data/stack):  %D KB'$'\n'\
+'total (sum):                %K KB'$'\n'\
+'max memory:                 %M '$MAX_MEMORY_UNITS''$'\n'\
+'page faults from disk:      %F'$'\n'\
+'other page faults:          %R'
+
+# Identify what type of system for ls color output
+# Darwin or Linux
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
+
+# Dynamically identify rc file for editing
+# Fallback to bashrc as the default
+if [ "$ZSH_VERSION" ]; then
+  export RC=".zshrc"
+else
+  export RC=".bashrc"
+fi
+
+# Run alias commands as sudo
+alias sudo='sudo '
+
+# Modify bash profile
+alias rc='"${EDITOR}" ~/${RC} && source ~/${RC}'
+
+# Basic aliases
+alias :q='exit'
+alias ll='ls -alF'
+alias rm='rm -i'
+alias clr='clear'
+alias cls='clear'
+alias grep='grep --color=auto'
+alias mkdir='mkdir -pv'
+
+# Always list directory contents upon 'cd'
+cd() { builtin cd "$@"; ll; }
+
+# Git aliases
+alias push='git push origin master'
+alias pull='git pull origin master'
+
+# Network aliases
+alias myip='curl ipinfo.io'
+alias cons='lsof -i'
+alias ports='sudo lsof -i | grep LISTEN'
+alias cpups='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
+alias memps='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+alias netuse="ps -o uid,pid,command -p $(lsof -ti | tr '\n' ' ') 2>/dev/null"
+
+# Show $PATH in readable view
+alias path='echo -e ${PATH//:/\\n}'
+
+# Open AnyConnect VPN UI and background the process
+# Since we are backgrounding just send all the std to /dev/null
+# alias vpn='sudo bash -c "/opt/cisco/anyconnect/bin/vpnui 2>/dev/null &"'
+
+# Folders Shortcuts
+[ -d ~/Dropbox ]   && alias dr='cd ~/Dropbox'
+[ -d ~/Downloads ] && alias dl='cd ~/Downloads'
+[ -d ~/Desktop ]   && alias dt='cd ~/Desktop'
+[ -d ~/Projects ]  && alias pj='cd ~/Projects'
+[ -d ~/Tools ]     && alias tl='cd ~/Tools'
+
+# E.g:
+#   ccd   -> cd ../
+#   ccd 2 -> cd ../../
+#   ccd 3 -> cd ../../../
+ccd() {
+  local count=${1:-1}
+  local cpath=""
+  for i in $( seq 1 ${count} ); do
+    cpath="${cpath}../"
+  done
+  cd "$cpath"
+}
+
+# Ignore this for now...
+# Install __git_ps1 to use this
+# git() {
+#   command -v __git_ps1 > /dev/null && __git_ps1 " (%s)" 2>/dev/null
+# }
+
+# https://gist.github.com/joseluisq/1e96c54fa4e1e5647940
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# From Arch wiki
+# Wrap the colors in \[...\] to avoid bash terminal confusions
+# that cause broken output when scrolling through history
+txtblk='\[\e[0;30m\]' # Black - Regular
+txtred='\[\e[0;31m\]' # Red
+txtgrn='\[\e[0;32m\]' # Green
+txtylw='\[\e[0;33m\]' # Yellow
+txtblu='\[\e[0;34m\]' # Blue
+txtpur='\[\e[0;35m\]' # Purple
+txtcyn='\[\e[0;36m\]' # Cyan
+txtwht='\[\e[0;37m\]' # White
+txtgry='\[\e[0;90m\]' # Gray
+txtrst='\[\e[0m\]'    # Text Reset
+
+# Dynamically handle terminal prompt based on ZSH/BASH
+# Fallback to BASH as the default
+if [ "$ZSH_VERSION" ]; then
+  setopt PROMPT_SUBST
+  PROMPT="%{%F{grey}%}┌─── %{%F{red}%}%n @ %m%{%F{white}%}: %{%F{cyan}%}%d %{%F{white}%}[%*-%D] (zsh) %{%F{yellow}%}"'$(git_branch)'$'\n'"%{%F{grey}%}└─ %{%F{reset}%}> "
+else
+  export PS1="${txtgry}┌─── ${txtred}\u @ \h${txtwht}: ${txtcyn}\w ${txtwht}[\D{%T %F}] (bash) ${txtpur}\$(git_branch)\n${txtgry}└─ ${txtrst}> "
+fi
+
+# Import and disable by default `cmdw`
+[ -f $HOME/.cmdw ] && source $HOME/.cmdw
+export CMDW_ENABLE=0
+
+# Disable Homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+
+# Auto-enable tmux on terminal/tab start
+#   1. Validate we are in an interactive terminal
+#   2. Vadlidate tmux is installed
+#   3. Validate we are not already in a tmux/screen session
+#   4. Validate our tmux config file exists
+if [[ $- == *"i"* ]] && \
+   command -v tmux &> /dev/null && \
+   [[ ! "$TERM" =~ screen ]] && \
+   [[ ! "$TERM" =~ tmux ]] && \
+   [ -z "$TMUX" ] && \
+   [ -f "$HOME/.tmux.conf" ]
+then
+  exec tmux
+fi
