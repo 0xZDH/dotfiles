@@ -17,17 +17,17 @@ else
 	MAX_MEMORY_UNITS=MB
 fi
 
-TIMEFMT='%J'$'\n'\
-'%U user '$'\n'\
-'%S system '$'\n'\
-'  %P cpu '$'\n'\
-'%*E total'$'\n'\
-'avg shared (code):         %X KB'$'\n'\
-'avg unshared (data/stack): %D KB'$'\n'\
-'total (sum):               %K KB'$'\n'\
-'max memory:                %M '$MAX_MEMORY_UNITS''$'\n'\
-'page faults from disk:     %F'$'\n'\
-'other page faults:         %R'
+TIMEFMT=$'\n'\
+'user     %U'$'\n'\
+'system   %S'$'\n'\
+'cpu      %P'$'\n'\
+'total    %*E'$'\n'\
+'avg shared (code):          %X KB'$'\n'\
+'avg unshared (data/stack):  %D KB'$'\n'\
+'total (sum):                %K KB'$'\n'\
+'max memory:                 %M '$MAX_MEMORY_UNITS''$'\n'\
+'page faults from disk:      %F'$'\n'\
+'other page faults:          %R'
 
 # Identify what type of system for ls color output
 # Darwin or Linux
