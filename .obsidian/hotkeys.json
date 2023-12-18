@@ -1,0 +1,29 @@
+{
+    "global-search:open": [
+      {
+        "modifiers": [
+          "Mod",
+          "Shift"
+        ],
+        "key": "F"
+      }
+    ],
+    "editor:insert-link": [],
+    "omnisearch:show-modal": [
+      {
+        "modifiers": [
+          "Mod"
+        ],
+        "key": "K"
+      }
+    ],
+    "omnisearch:show-modal-infile": [
+      {
+        "modifiers": [
+          "Mod",
+          "Shift"
+        ],
+        "key": "K"
+      }
+    ]
+  }

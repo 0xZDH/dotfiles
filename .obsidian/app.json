@@ -1,0 +1,8 @@
+{
+  "spellcheck": false,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "absolute",
+  "newFileLocation": "current",
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "./images"
+}

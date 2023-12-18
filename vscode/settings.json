@@ -1,0 +1,29 @@
+{
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "editor.tokenColorCustomizations": {
+        "comments": "#858585",
+        "textMateRules": [
+            {
+                "scope": "string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#858585"
+                }
+            }
+        ]
+    },
+    "workbench.startupEditor": "none",
+    "python.experiments.optOutFrom": [
+        "pythonPromptNewToolsExt",
+        "pythonSurveyNotification"
+    ],
+    "telemetry.telemetryLevel": "off",
+    "isort.serverEnabled": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    }
+}
+
+// Python extensions:
+//  Black Formatter, isort, Pylance, Python
