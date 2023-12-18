@@ -1,0 +1,3 @@
+# Add these lines to the pre-made config file for i3
+bindsym $mod+Control+Right workspace next
+bindsym $mod+Control+Left workspace prev
