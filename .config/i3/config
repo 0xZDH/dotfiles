@@ -8,3 +8,8 @@ exec --no-startup-id compton
 
 # For VMWare use only
 exec vmware-user-suid-wrapper --no-startup-id
+
+### To resize within VMWare
+# xrandr -q
+# xrandr --output <OUTPUT> --mode <RESOLUTION>
+#   example: xrandr --output Virtual-1 --mode 3840x2160
