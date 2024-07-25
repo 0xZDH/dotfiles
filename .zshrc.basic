@@ -2,15 +2,6 @@
 #   https://github.com/tomnomnom/dotfiles/blob/master/.bashrc
 #   https://github.com/denysdovhan/dotfiles/blob/master/lib/aliases.zsh
 
-# .bashrc
-#   curl -o ~/.bashrc https://gist.githubusercontent.com/0xZDH/0402f8659f9cb0ca60bd2d97f1a63657/raw
-
-# .vimrc:
-#   curl -o ~/.vimrc https://gist.githubusercontent.com/0xZDH/6cd52c5b440edd6a4155719eebfb4f6e/raw
-
-# .tmux.config
-#   curl -o ~/.tmux.config https://gist.githubusercontent.com/0xZDH/99910007398aa18aa4e0a91b6be238c2/raw
-
 # Terminal color examples:
 #   Background Color: #002B35 // rgb(0, 43, 53)
 #   Text Color:       #ACACAC // rgb(172, 172, 172)
@@ -99,6 +90,19 @@ alias path='echo -e ${PATH//:/\\n}'
 # Open AnyConnect VPN UI and background the process
 # Since we are backgrounding just send all the std to /dev/null
 # alias vpn='sudo bash -c "/opt/cisco/anyconnect/bin/vpnui 2>/dev/null &"'
+
+# Bat alias
+if command -v batcat > /dev/null 2>&1; then
+  # Add symlink batcat -> bat
+  if [ ! -f ~/.local/bin/bat ]; then
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+  fi
+fi
+
+if command -v bat > /dev/null 2>&1; then
+  alias cat='bat'
+fi
 
 # Folders Shortcuts
 [ -d ~/Dropbox ]   && alias dr='cd ~/Dropbox'
