@@ -1,5 +1,5 @@
 # Plugins to load
-# jeffreytse/zsh-vi-mode
+jeffreytse/zsh-vi-mode
 zsh-users/zsh-autosuggestions
 MichaelAquilina/zsh-you-should-use
 zsh-users/zsh-syntax-highlighting kind:defer
