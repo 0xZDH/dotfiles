@@ -83,7 +83,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Since we are backgrounding just send all the std to /dev/null
 # alias vpn='sudo bash -c "/opt/cisco/anyconnect/bin/vpnui 2>/dev/null &"'
 
-# Bat alias
+# Symlink batcat -> bat
 if command -v batcat > /dev/null 2>&1; then
   # Add symlink batcat -> bat
   if [ ! -f ~/.local/bin/bat ]; then
@@ -96,8 +96,9 @@ if command -v batcat > /dev/null 2>&1; then
   fi
 fi
 
+# Override cat in favor of bat
 if command -v bat > /dev/null 2>&1; then
-  alias c='bat'
+  alias cat='bat'
 fi
 
 # Import and disable by default `cmdw`
