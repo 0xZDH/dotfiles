@@ -8,8 +8,8 @@
 ###############################################################################
 
 general {
-    interval 		= 1
-    colors 			= true
+    interval        = 1
+    colors          = true
     color_good      = '#88b090'
     color_degraded  = '#ccdc90'
     color_bad       = '#e89393'
@@ -48,20 +48,20 @@ cpu_usage {
 }
 
 cpu_temperature 0 {
-	format = " %degrees°C"
+    format = " %degrees°C"
 }
 
 disk "/" {
-	format = " %avail"
-	prefix_type	= custom
-	low_threshold = 20
-	threshold_type = percentage_avail
+    format         = " %avail"
+    prefix_type    = custom
+    low_threshold  = 20
+    threshold_type = percentage_avail
 }
 
 volume master {
-    format = "%volume  "
+    format       = "%volume  "
+    mixer_idx    = 0
     format_muted = " "
-    device = "default"
-    mixer = "Master"
-    mixer_idx = 0
+    device       = "default"
+    mixer        = "Master"
 }
