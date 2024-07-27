@@ -37,7 +37,7 @@ success_symbol = '[λ](#50fa7b)'
 
 [cmd_duration]
 style    = 'fg:yellow'
-min_time = 1
+min_time = 0  # Always
 format   = '[$duration](yellow) '
 
 [time]
