@@ -7,7 +7,7 @@ HISTFILESIZE=2000000
 [ "$BASH_VERSION" ] && shopt -s histappend
 
 # Add Golang to PATH
-# export PATH=$PATH:/usr/local/go/bin:~/go/bin
+# export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 export EDITOR="vim"
 
 # configure `time` format for debugging
@@ -50,7 +50,7 @@ fi
 alias sudo='sudo '
 
 # Modify bash profile
-alias rc='"${EDITOR}" ~/${RC} && source ~/${RC}'
+alias rc='"${EDITOR}" $HOME/${RC} && source $HOME/${RC}'
 
 # Basic aliases
 alias :q='exit'
@@ -86,9 +86,9 @@ alias path='echo -e ${PATH//:/\\n}'
 # Symlink batcat -> bat
 if command -v batcat > /dev/null 2>&1; then
   # Add symlink batcat -> bat
-  if [ ! -f ~/.local/bin/bat ]; then
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
+  if [ ! -f $HOME/.local/bin/bat ]; then
+    mkdir -p $HOME/.local/bin
+    ln -s /usr/bin/batcat $HOME/.local/bin/bat
   fi
 
   if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
@@ -101,19 +101,22 @@ if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
 fi
 
-# Import and disable by default `cmdw`
+# Default handling for `cmdw`
+if [ ! -f $HOME/.cmdw ]; then
+  source <(curl -s https://raw.githubusercontent.com/0xZDH/cmdw/master/install.sh)
+fi
 [ -f $HOME/.cmdw ] && source $HOME/.cmdw
-export CMDW_ENABLE=0
+export CMDW_ENABLE=1
 
 # Disable Homebrew analytics
 export HOMEBREW_NO_ANALYTICS=1
 
 # Folders Shortcuts
-[ -d ~/Dropbox ]   && alias dr='cd ~/Dropbox'
-[ -d ~/Downloads ] && alias dl='cd ~/Downloads'
-[ -d ~/Desktop ]   && alias dt='cd ~/Desktop'
-[ -d ~/Projects ]  && alias pj='cd ~/Projects'
-[ -d ~/Tools ]     && alias tl='cd ~/Tools'
+[ -d $HOME/Dropbox ]   && alias dr='cd $HOME/Dropbox'
+[ -d $HOME/Downloads ] && alias dl='cd $HOME/Downloads'
+[ -d $HOME/Desktop ]   && alias dt='cd $HOME/Desktop'
+[ -d $HOME/Projects ]  && alias pj='cd $HOME/Projects'
+[ -d $HOME/Tools ]     && alias tl='cd $HOME/Tools'
 
 # E.g:
 #   ccd   -> cd ../
@@ -147,7 +150,7 @@ fi
 # == ZSH Antidote handler ==
 
 # Define config folder
-export ZDOTDIR=~/.config/zsh
+export ZDOTDIR=$HOME/.config/zsh
 
 # Download plugin manager if we don't have it
 if ! [[ -e $ZDOTDIR/antidote ]]; then
