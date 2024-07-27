@@ -1,75 +1,88 @@
 format="""
-$username\
+${custom.linebreak}\
+\n\n$username\
 $hostname\
 $directory\
 $git_branch\
 $git_state\
 $git_status\
+$fill\
+$cmd_duration\
 $time\
 \n$character"""
 
-palette = "everforest"
+palette             = "everforest"
+add_newline         = false
+continuation_prompt = 'λ '
+
+[custom.linebreak]
+when     = 'test "$PWD" = "$PWD"'
+#command  = 'printf %"$COLUMNS"s |tr " " "_"'   # *NIX
+command  = 'printf %"$COLUMNS"s |tr " " "─"'   # MAC
+style    = 'fg:statusline2'
+format   = '[$output]($style)'
+
+[fill]
+symbol = ' '
 
 [sudo]
 disabled = false
 
 [aws]
-style = "#ffb86c"
+style = '#ffb86c'
 
 [character]
-error_symbol   = "[✖︎](#ff5555)"
-success_symbol = "[λ](#50fa7b)"
+error_symbol   = '[✖︎](#ff5555)'
+success_symbol = '[λ](#50fa7b)'
 
 [cmd_duration]
-style = "fg:yellow"
-#style = "#f1fa8c"
+style    = 'fg:yellow'
+min_time = 1
+format   = '[$duration](yellow) '
+
+[time]
+disabled = false
+format   = '[$time](white) '
 
 [git_branch]
 symbol = ''
-style  = "fg:green"
-#style  = "#ff79c6"
+style  = 'fg:green'
+#style  = '#ff79c6'
 
 [git_status]
-conflicted = "⚔️ "
-ahead      = "🏎️ 💨 ×${count} "
-behind     = "🐢 ×${count} "
-diverged   = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count} "
-untracked  = "🛤️ ×${count} "
-stashed    = "📦 "
-modified   = "📝 ×${count} "
-staged     = "🗃️ ×${count} "
-renamed    = "📛 ×${count} "
-deleted    = "🗑️ ×${count} "
-style      = "bright-white"
-format     = "$all_status$ahead_behind"
+conflicted = '⚔️ '
+ahead      = '🏎️ 💨 ×${count} '
+behind     = '🐢 ×${count} '
+diverged   = '🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count} '
+untracked  = '🛤️ ×${count} '
+stashed    = '📦 '
+modified   = '📝 ×${count} '
+staged     = '🗃️ ×${count} '
+renamed    = '📛 ×${count} '
+deleted    = '🗑️ ×${count} '
+style      = 'bright-white'
+format     = '$all_status$ahead_behind'
 
 [directory]
 truncation_length = 8
 truncation_symbol = '…/'
-style             = "fg:orange"
-read_only_style   = "fg:orange"
+style             = 'fg:orange'
+read_only_style   = 'fg:orange'
 format            = 'in [$path]($style)[$read_only]($read_only_style) '
-#format            = 'in [$path](red)[$read_only](bold red) '
 
 [hostname]
 ssh_only = false
-trim_at  = ".local"
+trim_at  = '.local'
 disabled = false
 style    = 'fg:blue'
-format   = '[@ $hostname]($style) '
-#format   = '@ [$hostname](cyan) '
+format   = '[@$hostname]($style) '
 
 [username]
 disabled    = false
 show_always = true
 style_root  = 'fg:red'
 style_user  = 'fg:blue'
-format      = '[$user]($style) '
-#format      = '[$user](cyan) '
-
-[time]
-disabled = false
-format = '[\[ $time \]](white) '
+format      = '[$user]($style)'
 
 
 [palettes.everforest]
