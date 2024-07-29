@@ -204,4 +204,7 @@ if [ -f /etc/zsh_command_not_found ]; then
 fi
 
 # Load starship prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+
+# Alternatively, use a pseudo-transient prompt
+source $HOME/.config/zsh/transient.zsh
