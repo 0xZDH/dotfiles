@@ -1,6 +1,5 @@
 format="""
-${custom.linebreak}\
-\n\n$username\
+$username\
 $hostname\
 $directory\
 $git_branch\
@@ -12,24 +11,19 @@ $time\
 \n$character"""
 
 palette             = "everforest"
-add_newline         = false
+add_newline         = true
 continuation_prompt = 'λ '
 
-[custom.linebreak]
-when     = 'test "$PWD" = "$PWD"'
+#[custom.linebreak]
+#when     = 'test "$PWD" = "$PWD"'
 #command  = 'printf %"$COLUMNS"s |tr " " "_"'   # *NIX
-command  = 'printf %"$COLUMNS"s |tr " " "─"'   # MAC
-style    = 'fg:statusline2'
-format   = '[$output]($style)'
+#command  = 'printf %"$COLUMNS"s |tr " " "─"'   # MAC
+#style    = 'fg:statusline2'
+#format   = '[$output]($style)'
 
 [fill]
-symbol = ' '
-
-[sudo]
-disabled = false
-
-[aws]
-style = '#ffb86c'
+style  = 'fg:statusline2'
+symbol = '.'
 
 [character]
 error_symbol   = '[✖︎](#ff5555)'
@@ -38,16 +32,17 @@ success_symbol = '[λ](#50fa7b)'
 [cmd_duration]
 style    = 'fg:yellow'
 min_time = 0  # Always
-format   = '[$duration](yellow) '
+format   = ' [$duration](yellow) '
 
 [time]
 disabled = false
 format   = '[$time](white) '
 
 [git_branch]
-symbol = ''
-style  = 'fg:green'
-#style  = '#ff79c6'
+disabled = false
+symbol   = ''
+style    = 'fg:green'
+format   = 'on [$symbol$branch(:$remote_branch)]($style) '
 
 [git_status]
 conflicted = '⚔️ '
@@ -83,6 +78,9 @@ show_always = true
 style_root  = 'fg:red'
 style_user  = 'fg:blue'
 format      = '[$user]($style)'
+
+[sudo]
+disabled = false
 
 
 [palettes.everforest]

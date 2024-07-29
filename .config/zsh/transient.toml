@@ -2,9 +2,15 @@ prompt="""
 $character
 """
 
+add_newline = true
+
 [character]
-error_symbol   = '[✖︎](#ff5555)'
-success_symbol = '[λ](#50fa7b)'
+error_symbol              = '[λ](#50fa7b)'
+success_symbol            = '[λ](#50fa7b)'
+vimcmd_symbol             = '[λ](#50fa7b)'
+vimcmd_replace_one_symbol = '[λ](#50fa7b)'
+vimcmd_replace_symbol     = '[λ](#50fa7b)'
+vimcmd_visual_symbol      = '[λ](#50fa7b)'
 
 
 # Disable all modules for transient prompt
