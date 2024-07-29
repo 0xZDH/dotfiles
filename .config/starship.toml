@@ -22,7 +22,7 @@ continuation_prompt = 'λ '
 #format   = '[$output]($style)'
 
 [fill]
-style  = 'fg:statusline2'
+style  = 'fg:grey0'
 symbol = '.'
 
 [character]
