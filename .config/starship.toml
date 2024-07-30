@@ -69,7 +69,7 @@ format            = 'in [$path]($style)[$read_only]($read_only_style) '
 
 [hostname]
 ssh_only = false
-trim_at  = '.local'
+trim_at  = '.'
 disabled = false
 style    = 'fg:blue'
 format   = '[@$hostname]($style) '
