@@ -26,17 +26,23 @@ else
 fi
 
 TIMEFMT=$'\n'\
-'user     %U'$'\n'\
-'system   %S'$'\n'\
-'cpu      %P'$'\n'\
-'total    %*E'$'\n'\
+'        time in user mode   %U'$'\n'\
+'      time in kernel mode   %S'$'\n'\
+'                cpu usage   %P'$'\n'\
+'               total time   %*E'$'\n'\
 $'\n'\
-'avg shared (code):          %X KB'$'\n'\
-'avg unshared (data/stack):  %D KB'$'\n'\
-'total (sum):                %K KB'$'\n'\
-'max memory:                 %M '$MAX_MEMORY_UNITS''$'\n'\
-'page faults from disk:      %F'$'\n'\
-'other page faults:          %R'
+'        avg shared (code)   %X KB'$'\n'\
+'avg unshared (data/stack)   %D KB'$'\n'\
+'        total space (sum)   %K KB'$'\n'\
+$'\n'\
+'               max memory   %M '$MAX_MEMORY_UNITS''$'\n'\
+'    page faults from disk   %F'$'\n'\
+'        other page faults   %R'$'\n'\
+'         input operations   %I'$'\n'\
+'        output operations   %O'$'\n'\
+'            sock recieved   %r'$'\n'\
+'                sock sent   %s'$'\n'\
+'         signals recieved   %k'
 
 # Identify what type of system for ls color output
 # Darwin or Linux
