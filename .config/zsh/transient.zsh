@@ -1,5 +1,6 @@
 # This is a semi-implementation of a transient prompt to be
 # used with Starship
+# https://github.com/spaceship-prompt/spaceship-prompt/issues/775
 
 zle-line-init() {
   emulate -L zsh
